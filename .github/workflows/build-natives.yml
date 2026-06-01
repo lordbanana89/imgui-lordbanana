@@ -25,7 +25,7 @@ jobs:
           - { name: macos,          type: macos,   runs-on: macos-14,         libfile: libimgui-lordbanana-java64.dylib }
     runs-on: ${{ matrix.runs-on }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive   # include/imgui (1.90.9 docking) + implot/imnodes/imguizmo/node-editor/knobs/club/texteditor/filedialog
       - uses: actions/setup-java@v4
@@ -64,7 +64,7 @@ jobs:
     needs: natives
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with: { submodules: recursive }
       - uses: actions/setup-java@v4
         with: { distribution: liberica, java-version: 17 }
