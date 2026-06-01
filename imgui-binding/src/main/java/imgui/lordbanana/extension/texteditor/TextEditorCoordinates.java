@@ -1,6 +1,5 @@
 package imgui.lordbanana.extension.texteditor;
 
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 
 import java.util.Objects;
 

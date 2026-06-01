@@ -2,7 +2,6 @@ package imgui.lordbanana.extension.texteditor.flag;
 
 import imgui.lordbanana.binding.annotation.BindingAstEnum;
 import imgui.lordbanana.binding.annotation.BindingSource;
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 
 @BindingSource
 public final class TextEditorPaletteIndex {

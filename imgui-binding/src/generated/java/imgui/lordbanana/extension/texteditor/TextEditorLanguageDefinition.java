@@ -1,7 +1,6 @@
 package imgui.lordbanana.extension.texteditor;
 
 import imgui.lordbanana.binding.ImGuiStructDestroyable;
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 
 import java.util.Map;
 

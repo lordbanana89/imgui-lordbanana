@@ -1,6 +1,5 @@
 package imgui.lordbanana.extension.texteditor.flag;
 
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 
 public final class TextEditorSelectionMode {
     private TextEditorSelectionMode() {

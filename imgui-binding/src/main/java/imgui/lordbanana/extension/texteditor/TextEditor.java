@@ -5,7 +5,6 @@ import imgui.lordbanana.binding.ImGuiStructDestroyable;
 import imgui.lordbanana.binding.annotation.ArgValue;
 import imgui.lordbanana.binding.annotation.BindingMethod;
 import imgui.lordbanana.binding.annotation.BindingSource;
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 import imgui.lordbanana.binding.annotation.OptArg;
 import imgui.lordbanana.binding.annotation.ReturnValue;
 
