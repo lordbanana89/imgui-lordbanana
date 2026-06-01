@@ -4,7 +4,6 @@ import imgui.lordbanana.ImVec2;
 import imgui.lordbanana.binding.annotation.ArgValue;
 import imgui.lordbanana.binding.annotation.BindingMethod;
 import imgui.lordbanana.binding.annotation.BindingSource;
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 import imgui.lordbanana.binding.annotation.OptArg;
 import imgui.lordbanana.binding.annotation.ReturnValue;
 import imgui.lordbanana.extension.imguifiledialog.callback.ImGuiFileDialogPaneFun;
@@ -15,7 +14,6 @@ import java.util.HashMap;
  * ImGuiFileDialog extension for ImGui
  * Repo: <a href="https://github.com/aiekick/ImGuiFileDialog">https://github.com/aiekick/ImGuiFileDialog</a>
  */
-@ExcludedSource
 @BindingSource(callPtr = "ImGuiFileDialog::Instance()", callOperator = "->")
 public final class ImGuiFileDialog {
     private ImGuiFileDialog() {

@@ -19,7 +19,7 @@ class GenerateLibs extends DefaultTask {
         'include/imguizmo',
         'include/implot',
         'include/ImGuiColorTextEdit',
-//        'include/ImGuiFileDialog',     // deferred: needs JNI PaneFun + mingw dirent -I
+        'include/ImGuiFileDialog',
         'include/imgui_club/imgui_memory_editor',
         'include/imgui-knobs'
     ]
@@ -108,6 +108,7 @@ class GenerateLibs extends DefaultTask {
 
         if (forWindows) {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
+            win64.cppFlags += " -I" + jniDir + "/dirent"  // ImGuiFileDialog dirent shim (mingw)
             addFreeTypeIfEnabled(win64)
             buildTargets += win64
         }

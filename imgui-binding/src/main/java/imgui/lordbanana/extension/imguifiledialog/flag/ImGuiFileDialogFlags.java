@@ -2,9 +2,7 @@ package imgui.lordbanana.extension.imguifiledialog.flag;
 
 import imgui.lordbanana.binding.annotation.BindingAstEnum;
 import imgui.lordbanana.binding.annotation.BindingSource;
-import imgui.lordbanana.binding.annotation.ExcludedSource;
 
-@ExcludedSource
 @BindingSource
 public final class ImGuiFileDialogFlags {
     private ImGuiFileDialogFlags() {
