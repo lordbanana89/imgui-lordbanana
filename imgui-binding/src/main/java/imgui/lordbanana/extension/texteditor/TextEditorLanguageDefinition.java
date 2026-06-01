@@ -10,7 +10,6 @@ import imgui.lordbanana.binding.annotation.TypeStdString;
 
 import java.util.Map;
 
-@ExcludedSource
 @BindingSource
 public final class TextEditorLanguageDefinition extends ImGuiStructDestroyable {
     public TextEditorLanguageDefinition() {

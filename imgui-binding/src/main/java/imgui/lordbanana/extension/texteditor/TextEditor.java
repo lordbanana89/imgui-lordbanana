@@ -11,7 +11,6 @@ import imgui.lordbanana.binding.annotation.ReturnValue;
 
 import java.util.Map;
 
-@ExcludedSource
 @BindingSource
 public final class TextEditor extends ImGuiStructDestroyable {
     public TextEditor() {

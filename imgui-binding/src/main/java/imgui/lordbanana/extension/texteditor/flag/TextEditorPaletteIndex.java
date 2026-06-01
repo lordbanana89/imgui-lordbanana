@@ -4,7 +4,6 @@ import imgui.lordbanana.binding.annotation.BindingAstEnum;
 import imgui.lordbanana.binding.annotation.BindingSource;
 import imgui.lordbanana.binding.annotation.ExcludedSource;
 
-@ExcludedSource
 @BindingSource
 public final class TextEditorPaletteIndex {
     private TextEditorPaletteIndex() {
