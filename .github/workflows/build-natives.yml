@@ -1,0 +1,93 @@
+name: build-natives
+
+# Builds the imgui-lordbanana native binaries for 5 classifiers and assembles the
+# binding + multiplatform natives jars. This is the part that CANNOT run in a dev
+# sandbox (needs per-OS toolchains): Windows is cross-compiled with mingw on Linux,
+# linux-arm64 is built natively on an arm64 runner, macOS is a universal (x86_64+arm64)
+# binary via lipo. Output layout matches imgui.lordbanana.ImGui#nativeClassifierDir():
+#   com/lordbanana/imgui-natives/<classifier>/<libfile>
+# classifiers: windows-x86_64 | linux-x86_64 | linux-arm64 | macos
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  natives:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: windows-x86_64, runs-on: ubuntu-latest,     env: windows,         libfile: imgui-lordbanana-java64.dll }
+          - { name: linux-x86_64,   runs-on: ubuntu-latest,     env: linux,           libfile: libimgui-lordbanana-java64.so }
+          - { name: linux-arm64,    runs-on: ubuntu-24.04-arm,  env: linux,           libfile: libimgui-lordbanana-java64.so }
+          - { name: macos,          runs-on: macos-14,          env: macos,macosarm64, libfile: libimgui-lordbanana-java64.dylib }
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive   # include/imgui (1.90.9 docking) + implot/imnodes/imguizmo/knobs/node-editor/club/texteditor/filedialog
+      - uses: actions/setup-java@v4
+        with:
+          distribution: liberica
+          java-version: 17
+      - name: Install Windows cross toolchain (mingw)
+        if: matrix.env == 'windows'
+        run: sudo apt-get update && sudo apt-get install -y mingw-w64
+      - name: Vendor + build native (freetype static)
+        run: |
+          chmod +x ./gradlew
+          ./gradlew imgui-binding:generateLibs -Denvs=${{ matrix.env }} -Dfreetype=true --no-daemon --stacktrace
+      - name: Assemble macOS universal dylib
+        if: matrix.name == 'macos'
+        run: |
+          mkdir -p staged
+          lipo -create -output "staged/${{ matrix.libfile }}" \
+            imgui-binding/build/c++/libsNative/macosx64/${{ matrix.libfile }} \
+            imgui-binding/build/c++/libsNative/macosxarm64/${{ matrix.libfile }}
+      - name: Stage native into classifier folder
+        run: |
+          DEST="natives/com/lordbanana/imgui-natives/${{ matrix.name }}"
+          mkdir -p "$DEST"
+          if [ -f "staged/${{ matrix.libfile }}" ]; then
+            cp "staged/${{ matrix.libfile }}" "$DEST/"
+          else
+            # generateLibs writes per-target dirs; pick whichever exists for this env
+            find imgui-binding/build -name "${{ matrix.libfile }}" -print -exec cp {} "$DEST/" \; | head
+          fi
+          ls -la "$DEST"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-${{ matrix.name }}
+          path: natives/
+
+  assemble:
+    needs: natives
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { submodules: recursive }
+      - uses: actions/setup-java@v4
+        with: { distribution: liberica, java-version: 17 }
+      - name: Build the binding jar (imgui.lordbanana classes)
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :imgui-binding:jar --no-daemon
+      - uses: actions/download-artifact@v4
+        with:
+          path: dl
+      - name: Assemble multiplatform natives jar
+        run: |
+          mkdir -p natives-merged
+          # merge every classifier folder produced by the matrix
+          for d in dl/native-*/; do cp -R "$d"/. natives-merged/; done
+          find natives-merged -type f
+          (cd natives-merged && jar cf ../imgui-lordbanana-natives.jar .)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: imgui-lordbanana-jars
+          path: |
+            imgui-lordbanana-natives.jar
+            imgui-binding/build/libs/*.jar

@@ -1,0 +1,10 @@
+package imgui.lordbanana.callback;
+
+import imgui.lordbanana.ImGuiViewport;
+
+/**
+ * Callback to represent ImGuiPlatformIO function with args: (ImGuiViewport*) - Boolean
+ */
+public abstract class ImPlatformFuncViewportSuppFloat {
+    public abstract float get(ImGuiViewport vp);
+}

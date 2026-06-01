@@ -1,0 +1,16 @@
+package imgui.lordbanana.flag;
+
+import imgui.lordbanana.binding.annotation.BindingAstEnum;
+import imgui.lordbanana.binding.annotation.BindingSource;
+
+/**
+ * Flags for ImGui::Selectable()
+ */
+@BindingSource
+public final class ImGuiSelectableFlags {
+    private ImGuiSelectableFlags() {
+    }
+
+    @BindingAstEnum(file = "ast-imgui.json", qualType = "ImGuiSelectableFlags_")
+    public Void __;
+}

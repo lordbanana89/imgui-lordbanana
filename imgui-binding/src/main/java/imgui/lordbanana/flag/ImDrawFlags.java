@@ -1,0 +1,16 @@
+package imgui.lordbanana.flag;
+
+import imgui.lordbanana.binding.annotation.BindingAstEnum;
+import imgui.lordbanana.binding.annotation.BindingSource;
+
+/**
+ * Flags for ImDrawList functions
+ */
+@BindingSource
+public final class ImDrawFlags {
+    private ImDrawFlags() {
+    }
+
+    @BindingAstEnum(file = "ast-imgui.json", qualType = "ImDrawFlags_")
+    public Void __;
+}
