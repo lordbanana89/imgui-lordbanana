@@ -18,8 +18,8 @@ class GenerateLibs extends DefaultTask {
         'include/imgui-node-editor',
         'include/imguizmo',
         'include/implot',
-        'include/ImGuiColorTextEdit',
-        'include/ImGuiFileDialog',
+//        'include/ImGuiColorTextEdit',  // deferred: needs generated-tree + JNI authoring
+//        'include/ImGuiFileDialog',     // deferred: needs JNI PaneFun + mingw dirent -I
         'include/imgui_club/imgui_memory_editor',
         'include/imgui-knobs'
     ]

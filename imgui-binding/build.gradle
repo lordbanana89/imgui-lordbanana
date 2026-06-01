@@ -47,7 +47,7 @@ configurePublishing('imgui-java-binding', 'JNI based binding for Dear ImGui', pr
 
 jar {
     manifest {
-        attributes  'Automatic-Module-Name': 'imgui.binding'
+        attributes  'Automatic-Module-Name': 'imgui.lordbanana.binding'
     }
 }
 

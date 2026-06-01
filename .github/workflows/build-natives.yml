@@ -5,7 +5,8 @@ name: build-natives
 # then assembles the binding + multiplatform natives jar. Cannot run in a dev
 # sandbox (per-OS toolchains). Output layout matches
 # imgui.lordbanana.ImGui#nativeClassifierDir(): com/lordbanana/imgui-natives/<classifier>/<lib>
-# classifiers: windows-x86_64 | linux-x86_64 | linux-arm64 | macos (universal)
+# classifiers: windows-x86_64 | linux-x86_64 | macos (universal x86_64+arm64)
+# (linux-arm64 deferred: jnigen Linux target hardcodes x86 -msse/-m64; needs an aarch64 BuildTarget)
 
 on:
   push:
@@ -21,7 +22,6 @@ jobs:
         include:
           - { name: windows-x86_64, type: windows, runs-on: ubuntu-latest,    libfile: imgui-lordbanana-java64.dll }
           - { name: linux-x86_64,   type: linux,   runs-on: ubuntu-latest,    libfile: libimgui-lordbanana-java64.so }
-          - { name: linux-arm64,    type: linux,   runs-on: ubuntu-24.04-arm, libfile: libimgui-lordbanana-java64.so }
           - { name: macos,          type: macos,   runs-on: macos-14,         libfile: libimgui-lordbanana-java64.dylib }
     runs-on: ${{ matrix.runs-on }}
     steps:
