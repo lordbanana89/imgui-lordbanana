@@ -1,8 +1,9 @@
 <div align="center">
 
-# ImGui Java
+# ImGui Java — `imgui.lordbanana` fork
 
-**JNI based binding for [Dear ImGui](https://github.com/ocornut/imgui)**
+**JNI based binding for [Dear ImGui](https://github.com/ocornut/imgui)**<br>
+**A hard fork of [SpaiR/imgui-java](https://github.com/SpaiR/imgui-java) v1.90.0, repackaged and extended for [Flash Replay](https://github.com/lordbanana89).**
 
 [![Github All Releases](https://img.shields.io/github/downloads/SpaiR/imgui-java/total.svg?logo=github)](https://github.com/SpaiR/imgui-java/releases)
 [![CI](https://github.com/SpaiR/imgui-java/actions/workflows/ci.yml/badge.svg)](https://github.com/SpaiR/imgui-java/actions/workflows/ci.yml)<br>
@@ -13,6 +14,16 @@
 </div>
 
 ---
+
+> ## ℹ️ About this fork
+>
+> This is **not** the upstream `io.github.spair:imgui-java` artifact. It is an independent fork maintained for the **Flash Replay** cinematic-studio mod, carrying capabilities the upstream binding does not ship:
+>
+> - **Repackaged namespace** — every class lives under `imgui.lordbanana.*` instead of `imgui.*`, so the binding can be vendored/shaded into a mod jar without colliding with any other Dear ImGui binding on the classpath.
+> - **Arch-aware multiplatform natives** — prebuilt native libraries for **Windows x64, Linux x64 + arm64, and macOS universal (x64 + arm64)**. Upstream does not publish arm64 binaries.
+> - **Dear ImGui 1.90.9 (docking branch)** — full **Multi-Viewports + Docking** support, baselined on SpaiR/imgui-java **v1.90.0**.
+>
+> Everything below this notice is inherited from the upstream README and still describes the API faithfully.
 
 ### Features
 
