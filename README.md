@@ -5,11 +5,11 @@
 **JNI based binding for [Dear ImGui](https://github.com/ocornut/imgui)**<br>
 **A hard fork of [SpaiR/imgui-java](https://github.com/SpaiR/imgui-java) v1.90.0, repackaged and extended for [Flash Replay](https://github.com/lordbanana89).**
 
-[![Github All Releases](https://img.shields.io/github/downloads/SpaiR/imgui-java/total.svg?logo=github)](https://github.com/SpaiR/imgui-java/releases)
-[![CI](https://github.com/SpaiR/imgui-java/actions/workflows/ci.yml/badge.svg)](https://github.com/SpaiR/imgui-java/actions/workflows/ci.yml)<br>
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.spair/imgui-java-binding?logo=apache-maven)](https://central.sonatype.com/search?q=io.github.spair++imgui-java)
-[![binding javadoc](https://javadoc.io/badge2/io.github.spair/imgui-java-binding/javadoc_binding.svg?logo=java)](https://javadoc.io/doc/io.github.spair/imgui-java-binding)
-[![app javadoc](https://javadoc.io/badge2/io.github.spair/imgui-java-app/javadoc_app.svg?logo=java)](https://javadoc.io/doc/io.github.spair/imgui-java-app)
+[![License: MIT](https://img.shields.io/github/license/lordbanana89/imgui-lordbanana?logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/lordbanana89/imgui-lordbanana?logo=github)](https://github.com/lordbanana89/imgui-lordbanana/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/lordbanana89/imgui-lordbanana?logo=git&logoColor=white)](https://github.com/lordbanana89/imgui-lordbanana/commits)<br>
+[![Fork of SpaiR/imgui-java](https://img.shields.io/badge/fork%20of-SpaiR%2Fimgui--java%20v1.90.0-blue?logo=github)](https://github.com/SpaiR/imgui-java)
+[![Dear ImGui](https://img.shields.io/badge/Dear%20ImGui-1.90.9%20docking-orange?logo=cplusplus&logoColor=white)](https://github.com/ocornut/imgui)
 
 </div>
 
@@ -65,14 +65,16 @@ _**Make sure you have installed <u>JDK 8</u> or higher.**_
 You can try binding by yourself in three simple steps:
 
 ```
-git clone git@github.com:SpaiR/imgui-java.git
-cd imgui-java
+git clone https://github.com/lordbanana89/imgui-lordbanana.git
+cd imgui-lordbanana
 ./gradlew :example:run
 ```
 
 See `example` module to try other widgets in action.
 
 # How to Use
+
+> **Note on distribution.** This fork is **not published to Maven Central** and ships **no GitHub releases** — it is consumed by being **vendored / built from source** (this is how [Flash Replay](https://github.com/lordbanana89) embeds it, repackaged under `imgui.lordbanana.*`). The `io.github.spair:imgui-java-*` coordinates and download links shown in the sections below are the **upstream SpaiR artifacts**, kept here as credited reference for the original API; they are **not** this fork. To use this fork, clone it (see [How to Try](#how-to-try)) or build the natives (see [How to Build Native Libraries](#how-to-build-native-libraries)).
 
 **[ImGui in LWJGL YouTube video](https://youtu.be/Xq-eVcNtUbw)** by [GamesWithGabe](https://www.youtube.com/channel/UCQP4qSCj1eHMHisDDR4iPzw).<br>
 You can use this video as a basic step-by-step tutorial. It shows how to integrate binding with the usage of jar files.<br>
@@ -369,7 +371,7 @@ Read [javadoc](https://javadoc.io/doc/io.github.spair/imgui-java-binding) and so
 # How to Build Native Libraries
 
 Ensure you've downloaded git submodules. That could be achieved:
-- When cloning the repository: `git clone --recurse-submodules https://github.com/SpaiR/imgui-java.git`
+- When cloning the repository: `git clone --recurse-submodules https://github.com/lordbanana89/imgui-lordbanana.git`
 - When the repository cloned: `git submodule init` and `git submodule update`
 
 ### Windows
@@ -411,4 +413,8 @@ This script configures the FreeType library to be statically compiled into your 
 
 # License
 
-See the LICENSE file for license rights and limitations (MIT).
+This fork is released under the **MIT License** — see the LICENSE file for rights and limitations.
+
+### Credits
+
+This is a fork of **[SpaiR/imgui-java](https://github.com/SpaiR/imgui-java)** (v1.90.0), itself a Java/JNI binding for **[Dear ImGui](https://github.com/ocornut/imgui)** by Omar Cornut and contributors. All original work remains © their respective authors under their original MIT licenses. This fork — repackaged to `imgui.lordbanana.*`, with arm64 natives and macOS universal binaries for [Flash Replay](https://github.com/lordbanana89) — is maintained by **[lordbanana89](https://github.com/lordbanana89)**.
