@@ -39,7 +39,7 @@ Additionally, there is an `imgui-app` module, which provides **a high abstractio
 It hides all low-level code under one class to extend. With it, you can build your GUI application instantly.
 
 # Support
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P5BF17Q)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/erikz)
 
 You can support the project to motivate its further development.
 
